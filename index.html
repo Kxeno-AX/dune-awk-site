@@ -1,1 +1,1219 @@
-<h1>Hello World Wide Web!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dune Awakening Database | dune.gaming.tools</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+    }
+
+    :root {
+      /* ---- Desert base ---- */
+      --sand-deep: #0f0c08;          /* deep shadow, near-black ochre */
+      --sand-panel: #1a1510;         /* panel: dark dune */
+      --sand-panel-light: #241d16;   /* lighter dune */
+      --sand-border: #3a2f24;        /* dune edge */
+      --sand-text: #e8ddcc;          /* bone / sand text */
+      --sand-muted: #9c8d7a;         /* faded parchment */
+
+      /* ---- Spice (the mélange) ---- */
+      --spice: #d4722a;              /* melange orange */
+      --spice-glow: #ff9a4d;
+      --spice-deep: #a8531a;
+
+      /* ---- House factions ---- */
+      --atreides-green: #3f7d5c;     /* House Atreides */
+      --atreides-light: #6bbf8e;
+      --harkonnen-red: #a32e2e;      /* House Harkonnen */
+      --harkonnen-light: #d95252;
+      --fremen-blue: #3a6ea5;        /* Fremen sietch / eyes of ibad */
+      --fremen-light: #6fa8dc;
+      --corrino-gold: #c9a227;       /* Imperial gold */
+      --corrino-light: #f0d060;
+
+      --shadow: 0 10px 30px rgba(0,0,0,0.65);
+      --radius: 4px;
+      --transition: all 0.2s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--sand-deep);
+      background-image:
+        radial-gradient(circle at 85% 8%, rgba(212, 114, 42, 0.10) 0%, transparent 40%),
+        radial-gradient(circle at 10% 20%, rgba(63, 125, 92, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 50% 95%, rgba(58, 110, 165, 0.07) 0%, transparent 45%),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 3px,
+          rgba(255,255,255,0.012) 3px,
+          rgba(255,255,255,0.012) 4px
+        );
+      color: var(--sand-text);
+      line-height: 1.5;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    /* ---------- TOP UTILITY BAR ---------- */
+    .utility-bar {
+      background: #0a0806;
+      border-bottom: 1px solid var(--sand-border);
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--sand-muted);
+    }
+
+    .utility-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0.45rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .utility-left,
+    .utility-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .utility-bar a {
+      color: var(--sand-muted);
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .utility-bar a:hover { color: var(--spice); }
+
+    .remove-ads {
+      color: var(--corrino-gold);
+      border: 1px solid var(--corrino-gold);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      font-weight: 600;
+    }
+
+    .remove-ads:hover { background: rgba(201, 162, 39, 0.12); color: var(--corrino-light); }
+
+    /* ---------- MAIN HEADER (one headline, one action) ---------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 12, 8, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--spice);
+    }
+
+    .header-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--spice);
+      border-radius: 50%;
+      color: var(--spice);
+      font-size: 1rem;
+      box-shadow: 0 0 18px rgba(212, 114, 42, 0.35);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.05;
+    }
+
+    .brand-text strong {
+      font-size: 1.05rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--sand-text);
+      font-weight: 700;
+    }
+
+    .brand-text small {
+      font-size: 0.6rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--spice);
+      margin-top: 2px;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .main-nav a {
+      color: var(--sand-muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      padding: 0.55rem 0.85rem;
+      border-radius: 2px;
+      transition: var(--transition);
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .main-nav a:hover { color: var(--sand-text); background: rgba(255,255,255,0.04); }
+
+    .main-nav a.active {
+      color: var(--spice);
+      background: rgba(212, 114, 42, 0.10);
+    }
+
+    .main-nav a.active::after {
+      content: '';
+      position: absolute;
+      left: 0.85rem;
+      right: 0.85rem;
+      bottom: 0.15rem;
+      height: 2px;
+      background: var(--spice);
+    }
+
+    /* Server Status — high-frequency utility gets its own accent */
+    .server-status {
+      border: 1px solid var(--atreides-green);
+      color: var(--atreides-light) !important;
+      background: rgba(63, 125, 92, 0.10);
+    }
+
+    .server-status:hover { background: rgba(63, 125, 92, 0.2); color: var(--atreides-light) !important; }
+
+    .server-status .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--atreides-light);
+      box-shadow: 0 0 8px var(--atreides-light);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+    /* NEW badge — subdued, not outshouting the brand */
+    .new-badge {
+      font-size: 0.55rem;
+      background: var(--corrino-gold);
+      color: #1a1300;
+      padding: 0.1rem 0.35rem;
+      border-radius: 2px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-left: 0.15rem;
+    }
+
+    /* ---------- PAGE CONTAINER ---------- */
+    .app {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    /* ---------- HERO (one headline, one primary action) ---------- */
+    .hero {
+      background:
+        linear-gradient(145deg, rgba(36, 29, 22, 0.9), rgba(15, 12, 8, 0.95)),
+        radial-gradient(circle at 80% 20%, rgba(212, 114, 42, 0.18) 0%, transparent 55%);
+      border: 1px solid var(--sand-border);
+      border-left: 4px solid var(--spice);
+      border-radius: var(--radius);
+      padding: 3rem 2.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    /* Subtle sandworm ripple motif */
+    .hero::before {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      right: -60px;
+      width: 320px;
+      height: 320px;
+      border: 1px solid rgba(212, 114, 42, 0.15);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 30px rgba(212, 114, 42, 0.05),
+        0 0 0 60px rgba(212, 114, 42, 0.03);
+      pointer-events: none;
+    }
+
+    .hero-kicker {
+      font-size: 0.7rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--spice);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .hero-kicker::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--spice);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sand-text);
+      margin-bottom: 0.75rem;
+      max-width: 800px;
+      position: relative;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--spice);
+    }
+
+    .hero p {
+      color: var(--sand-muted);
+      font-size: 1.05rem;
+      max-width: 640px;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    /* Coverage / freshness signals — builds trust */
+    .coverage-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+      position: relative;
+    }
+
+    .coverage-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: var(--sand-muted);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--sand-border);
+      padding: 0.35rem 0.75rem;
+      border-radius: 2px;
+    }
+
+    .coverage-chip i { color: var(--atreides-light); font-size: 0.7rem; }
+
+    .coverage-chip strong { color: var(--sand-text); }
+
+    /* Primary action */
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      position: relative;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.85rem 1.7rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+      border-radius: 2px;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--spice);
+      color: #1a0e04;
+      box-shadow: 0 0 24px rgba(212, 114, 42, 0.35);
+    }
+
+    .btn-primary:hover { background: var(--spice-glow); box-shadow: 0 0 32px rgba(255, 154, 77, 0.55); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--sand-text);
+      border-color: var(--sand-border);
+    }
+
+    .btn-ghost:hover { border-color: var(--spice); color: var(--spice); }
+
+    /* ---------- DATABASE SEARCH (discoverability) ---------- */
+    .database-search {
+      background: var(--sand-panel);
+      border: 1px solid var(--sand-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .search-form {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .search-form .search-field {
+      flex: 1;
+      min-width: 240px;
+      display: flex;
+      align-items: center;
+      background: #0c0a07;
+      border: 1px solid var(--sand-border);
+      border-radius: 2px;
+      padding: 0 1rem;
+      transition: var(--transition);
+    }
+
+    .search-form .search-field:focus-within {
+      border-color: var(--spice);
+      box-shadow: 0 0 16px rgba(212, 114, 42, 0.2);
+    }
+
+    .search-form .search-field i { color: var(--sand-muted); font-size: 0.85rem; margin-right: 0.6rem; }
+
+    .search-form input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--sand-text);
+      font-size: 0.95rem;
+      padding: 0.8rem 0;
+    }
+
+    .search-form input::placeholder { color: var(--sand-muted); }
+
+    /* Faceted filters */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .filter-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--sand-muted);
+      font-weight: 700;
+      margin-right: 0.25rem;
+    }
+
+    .filter-chip {
+      background: transparent;
+      border: 1px solid var(--sand-border);
+      color: var(--sand-muted);
+      padding: 0.35rem 0.85rem;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .filter-chip:hover { color: var(--sand-text); border-color: var(--sand-muted); }
+
+    .filter-chip.active { background: var(--spice); color: #1a0e04; border-color: var(--spice); }
+
+    /* ---------- SECTION TITLES ---------- */
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--sand-border);
+    }
+
+    .section-head h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--sand-text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-head h2 i { color: var(--spice); font-size: 0.95rem; }
+
+    .section-head a {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--spice);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .section-head a:hover { color: var(--spice-glow); }
+
+    /* ---------- ENTRY CARD GRID ---------- */
+    .entry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .entry-card {
+      background: var(--sand-panel);
+      border: 1px solid var(--sand-border);
+      border-left: 3px solid var(--sand-border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      transition: var(--transition);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .entry-card:hover {
+      background: var(--sand-panel-light);
+      transform: translateX(3px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+    }
+
+    /* Faction colour coding by category */
+    .entry-card.quest { border-left-color: var(--fremen-blue); }
+    .entry-card.quest:hover { border-left-color: var(--fremen-light); }
+
+    .entry-card.component { border-left-color: var(--atreides-green); }
+    .entry-card.component:hover { border-left-color: var(--atreides-light); }
+
+    .entry-card.resource { border-left-color: var(--corrino-gold); }
+    .entry-card.resource:hover { border-left-color: var(--corrino-light); }
+
+    .entry-card.contract { border-left-color: var(--harkonnen-red); }
+    .entry-card.contract:hover { border-left-color: var(--harkonnen-light); }
+
+    .entry-card.vehicle { border-left-color: var(--spice); }
+    .entry-card.vehicle:hover { border-left-color: var(--spice-glow); }
+
+    .entry-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .entry-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      border-radius: 2px;
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.04);
+      color: var(--sand-muted);
+    }
+
+    .entry-card.quest .entry-icon { color: var(--fremen-light); background: rgba(58, 110, 165, 0.12); }
+    .entry-card.component .entry-icon { color: var(--atreides-light); background: rgba(63, 125, 92, 0.12); }
+    .entry-card.resource .entry-icon { color: var(--corrino-light); background: rgba(201, 162, 39, 0.12); }
+    .entry-card.contract .entry-icon { color: var(--harkonnen-light); background: rgba(163, 46, 46, 0.12); }
+    .entry-card.vehicle .entry-icon { color: var(--spice-glow); background: rgba(212, 114, 42, 0.12); }
+
+    .entry-name {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--sand-text);
+      line-height: 1.25;
+      flex: 1;
+    }
+
+    .entry-category {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      color: var(--sand-muted);
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .entry-category::before {
+      content: '';
+      width: 12px;
+      height: 1px;
+      background: var(--sand-muted);
+    }
+
+    .entry-card.quest .entry-category { color: var(--fremen-light); }
+    .entry-card.quest .entry-category::before { background: var(--fremen-light); }
+    .entry-card.component .entry-category { color: var(--atreides-light); }
+    .entry-card.component .entry-category::before { background: var(--atreides-light); }
+    .entry-card.resource .entry-category { color: var(--corrino-light); }
+    .entry-card.resource .entry-category::before { background: var(--corrino-light); }
+    .entry-card.contract .entry-category { color: var(--harkonnen-light); }
+    .entry-card.contract .entry-category::before { background: var(--harkonnen-light); }
+    .entry-card.vehicle .entry-category { color: var(--spice-glow); }
+    .entry-card.vehicle .entry-category::before { background: var(--spice-glow); }
+
+    /* ---------- TOOLS STRIP ---------- */
+    .tools-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .tool-card {
+      background: var(--sand-panel);
+      border: 1px solid var(--sand-border);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      display: flex;
+      gap: 0.9rem;
+      align-items: flex-start;
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+    }
+
+    .tool-card:hover {
+      border-color: var(--spice);
+      background: var(--sand-panel-light);
+      transform: translateY(-2px);
+    }
+
+    .tool-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      border-radius: 2px;
+      background: rgba(212, 114, 42, 0.12);
+      color: var(--spice);
+      flex-shrink: 0;
+    }
+
+    .tool-card h3 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--sand-text);
+      margin-bottom: 0.2rem;
+    }
+
+    .tool-card p {
+      font-size: 0.78rem;
+      color: var(--sand-muted);
+      line-height: 1.4;
+    }
+
+    /* ---------- MEMBERSHIP PATHWAY (not a buried banner) ---------- */
+    .membership {
+      background:
+        linear-gradient(135deg, rgba(201, 162, 39, 0.10), rgba(212, 114, 42, 0.06)),
+        var(--sand-panel);
+      border: 1px solid var(--corrino-gold);
+      border-radius: var(--radius);
+      padding: 1.75rem 2rem;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    @media (max-width: 800px) { .membership { grid-template-columns: 1fr; } }
+
+    .membership h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--corrino-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .membership p {
+      color: var(--sand-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .membership-benefits {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .membership-benefits li {
+      font-size: 0.82rem;
+      color: var(--sand-text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .membership-benefits i { color: var(--corrino-gold); font-size: 0.75rem; }
+
+    .tier-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .tier {
+      background: #0c0a07;
+      border: 1px solid var(--sand-border);
+      border-radius: 2px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .tier:hover { border-color: var(--corrino-gold); }
+
+    .tier strong { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px; color: var(--sand-text); }
+
+    .tier span { font-size: 0.9rem; font-weight: 700; color: var(--corrino-light); }
+
+    /* ---------- COMPANION / DISCORD CTA ---------- */
+    .community-cta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 700px) { .community-cta { grid-template-columns: 1fr; } }
+
+    .community-card {
+      background: var(--sand-panel);
+      border: 1px solid var(--sand-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    .community-card:hover { transform: translateY(-3px); }
+
+    .community-card.discord { border-left: 3px solid #5865F2; }
+    .community-card.discord:hover { background: var(--sand-panel-light); }
+    .community-card.discord .community-icon { background: rgba(88, 101, 242, 0.15); color: #8a94ff; }
+
+    .community-card.companion { border-left: 3px solid var(--atreides-green); }
+    .community-card.companion:hover { background: var(--sand-panel-light); }
+    .community-card.companion .community-icon { background: rgba(63, 125, 92, 0.15); color: var(--atreides-light); }
+
+    .community-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .community-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--sand-text);
+      margin-bottom: 0.15rem;
+    }
+
+    .community-card p { font-size: 0.8rem; color: var(--sand-muted); }
+
+    /* ---------- FOOTER ---------- */
+    .site-footer {
+      border-top: 1px solid var(--sand-border);
+      padding: 1.5rem;
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: var(--sand-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .site-footer a {
+      color: var(--sand-muted);
+      text-decoration: none;
+      margin-right: 1.25rem;
+      transition: var(--transition);
+    }
+
+    .site-footer a:hover { color: var(--spice); }
+
+    /* ---------- BACK TO TOP ---------- */
+    .back-to-top {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--spice);
+      color: #1a0e04;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(212, 114, 42, 0.45);
+      transition: var(--transition);
+      z-index: 90;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .back-to-top.visible { opacity: 1; pointer-events: auto; }
+
+    .back-to-top:hover { background: var(--spice-glow); transform: translateY(-3px); }
+
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 2rem; }
+      .hero { padding: 2rem 1.5rem; }
+      .main-nav a { font-size: 0.7rem; padding: 0.45rem 0.55rem; }
+      .membership-benefits { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== UTILITY BAR ========== -->
+  <div class="utility-bar">
+    <div class="utility-inner">
+      <div class="utility-left">
+        <span><i class="fas fa-globe"></i> gaming.tools</span>
+        <span>Dune: Awakening</span>
+      </div>
+      <div class="utility-right">
+        <a href="#" class="remove-ads"><i class="fas fa-ban"></i> Remove Ads</a>
+        <a href="#"><i class="fab fa-discord"></i> Discord</a>
+        <a href="#"><i class="fas fa-user"></i> Sign In</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SITE HEADER ========== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="brand">
+        <div class="brand-mark"><i class="fas fa-sun"></i></div>
+        <div class="brand-text">
+          <strong>Dune Awakening</strong>
+          <small>Database</small>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <a href="#" class="active">Home</a>
+        <a href="#database">Database</a>
+        <a href="#tools">Tools</a>
+        <a href="#">Companion App <span class="new-badge">New</span></a>
+        <a href="#">Deep Desert</a>
+        <a href="#">Hagga Basin</a>
+        <a href="#" class="server-status"><span class="dot"></span> Server Status</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="app">
+
+    <!-- ========== HERO — one headline, one action ========== -->
+    <section class="hero">
+      <div class="hero-kicker">Arrakis Awaits</div>
+      <h1>Master <em>Dune: Awakening</em> with the all-in-one database.</h1>
+      <p>Items, recipes, quests, contracts, vehicles, and resources — searchable, cross-linked, and updated for launch patches.</p>
+
+      <div class="coverage-row">
+        <span class="coverage-chip"><i class="fas fa-database"></i> <strong>4,200+</strong> entries</span>
+        <span class="coverage-chip"><i class="fas fa-code-branch"></i> Version <strong>1.0.4</strong></span>
+        <span class="coverage-chip"><i class="fas fa-clock"></i> Updated <strong>2h ago</strong></span>
+        <span class="coverage-chip"><i class="fas fa-check-circle"></i> Ascension-ready</span>
+      </div>
+
+      <div class="cta-row">
+        <a href="#database" class="btn btn-primary"><i class="fas fa-search"></i> Browse Database</a>
+        <a href="#" class="btn btn-ghost"><i class="fab fa-discord"></i> Join Discord</a>
+      </div>
+    </section>
+
+    <!-- ========== DATABASE SEARCH — discoverability at point of entry ========== -->
+    <section class="database-search" id="database">
+      <form class="search-form" onsubmit="event.preventDefault();">
+        <div class="search-field">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search items, recipes, quests, contracts...">
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Search</button>
+      </form>
+      <div class="filter-row">
+        <span class="filter-label">Filter</span>
+        <button class="filter-chip active">All</button>
+        <button class="filter-chip">Items</button>
+        <button class="filter-chip">Recipes</button>
+        <button class="filter-chip">Quests</button>
+        <button class="filter-chip">Contracts</button>
+        <button class="filter-chip">Vehicles</button>
+        <button class="filter-chip">Resources</button>
+      </div>
+    </section>
+
+    <!-- ========== MOST POPULAR ENTRIES — card grid ========== -->
+    <div class="section-head">
+      <h2><i class="fas fa-fire"></i> Most Popular Entries</h2>
+      <a href="#">View all <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="entry-grid">
+      <a href="#" class="entry-card quest">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-scroll"></i></div>
+          <div class="entry-name">From The Ashes</div>
+        </div>
+        <div class="entry-category">Journey · Main Quests</div>
+      </a>
+      <a href="#" class="entry-card component">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-cog"></i></div>
+          <div class="entry-name">Plasteel Plate</div>
+        </div>
+        <div class="entry-category">Misc · Components</div>
+      </a>
+      <a href="#" class="entry-card resource">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-flask"></i></div>
+          <div class="entry-name">Mutated Brain Tissue</div>
+        </div>
+        <div class="entry-category">Misc · Raw Resources</div>
+      </a>
+      <a href="#" class="entry-card quest">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-scroll"></i></div>
+          <div class="entry-name">The Janusian Faithful</div>
+        </div>
+        <div class="entry-category">Journey · Main Quests</div>
+      </a>
+      <a href="#" class="entry-card component">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-cog"></i></div>
+          <div class="entry-name">Thermoelectric Cooler</div>
+        </div>
+        <div class="entry-category">Misc · Components</div>
+      </a>
+      <a href="#" class="entry-card component">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-cog"></i></div>
+          <div class="entry-name">Industrial Pump</div>
+        </div>
+        <div class="entry-category">Misc · Components</div>
+      </a>
+      <a href="#" class="entry-card contract">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-file-signature"></i></div>
+          <div class="entry-name">The Kirab Cortex</div>
+        </div>
+        <div class="entry-category">Contracts · Regular</div>
+      </a>
+      <a href="#" class="entry-card contract">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-file-signature"></i></div>
+          <div class="entry-name">Patient Zero</div>
+        </div>
+        <div class="entry-category">Contracts · Regular</div>
+      </a>
+      <a href="#" class="entry-card vehicle">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-plane"></i></div>
+          <div class="entry-name">Carrier Ornithopter Cargo Container</div>
+        </div>
+        <div class="entry-category">Vehicles · Carry-all</div>
+      </a>
+      <a href="#" class="entry-card component">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-cog"></i></div>
+          <div class="entry-name">Advanced Machinery</div>
+        </div>
+        <div class="entry-category">Misc · Components</div>
+      </a>
+      <a href="#" class="entry-card component">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-cog"></i></div>
+          <div class="entry-name">Complex Machinery</div>
+        </div>
+        <div class="entry-category">Misc · Components</div>
+      </a>
+      <a href="#" class="entry-card component">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-gem"></i></div>
+          <div class="entry-name">Diamondine Dust</div>
+        </div>
+        <div class="entry-category">Misc · Components</div>
+      </a>
+      <a href="#" class="entry-card contract">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-file-signature"></i></div>
+          <div class="entry-name">Eyes of the Kirab</div>
+        </div>
+        <div class="entry-category">Contracts · Regular</div>
+      </a>
+      <a href="#" class="entry-card quest">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-scroll"></i></div>
+          <div class="entry-name">The Footsteps of the Fremen</div>
+        </div>
+        <div class="entry-category">Journey · Main Quests</div>
+      </a>
+      <a href="#" class="entry-card resource">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-flask"></i></div>
+          <div class="entry-name">Spice Melange</div>
+        </div>
+        <div class="entry-category">Misc · Refined Resources</div>
+      </a>
+      <a href="#" class="entry-card quest">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-scroll"></i></div>
+          <div class="entry-name">The Bloodline</div>
+        </div>
+        <div class="entry-category">Journey · Main Quests</div>
+      </a>
+      <a href="#" class="entry-card resource">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-flask"></i></div>
+          <div class="entry-name">Stravidium Fiber</div>
+        </div>
+        <div class="entry-category">Misc · Refined Resources</div>
+      </a>
+      <a href="#" class="entry-card resource">
+        <div class="entry-top">
+          <div class="entry-icon"><i class="fas fa-coins"></i></div>
+          <div class="entry-name">Blood Marks</div>
+        </div>
+        <div class="entry-category">Misc · Currency</div>
+      </a>
+    </div>
+
+    <!-- ========== TOOLS ========== -->
+    <div class="section-head" id="tools">
+      <h2><i class="fas fa-tools"></i> Tools</h2>
+      <a href="#">All tools <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="tools-strip">
+      <a href="#" class="tool-card">
+        <div class="tool-icon"><i class="fas fa-calculator"></i></div>
+        <div>
+          <h3>Resource Calculator</h3>
+          <p>Plan crafting chains and material costs.</p>
+        </div>
+      </a>
+      <a href="#" class="tool-card">
+        <div class="tool-icon"><i class="fas fa-map"></i></div>
+        <div>
+          <h3>Deep Desert Map</h3>
+          <p>Locate spice fields and wreck sites.</p>
+        </div>
+      </a>
+      <a href="#" class="tool-card">
+        <div class="tool-icon"><i class="fas fa-server"></i></div>
+        <div>
+          <h3>Server Status</h3>
+          <p>Live status for all official servers.</p>
+        </div>
+      </a>
+      <a href="#" class="tool-card">
+        <div class="tool-icon"><i class="fas fa-mobile-alt"></i></div>
+        <div>
+          <h3>Companion App</h3>
+          <p>Take the database with you on the go.</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- ========== MEMBERSHIP PATHWAY ========== -->
+    <section class="membership">
+      <div>
+        <h2><i class="fas fa-crown"></i> Support the Site</h2>
+        <p>Consider supporting the site with one of our membership options and enjoy an ad-free experience.</p>
+        <ul class="membership-benefits">
+          <li><i class="fas fa-check"></i> Ad-free browsing</li>
+          <li><i class="fas fa-check"></i> Early access to new tools</li>
+          <li><i class="fas fa-check"></i> Member badge on Discord</li>
+          <li><i class="fas fa-check"></i> Priority data updates</li>
+        </ul>
+      </div>
+      <div class="tier-cards">
+        <div class="tier">
+          <strong>Supporter · Monthly</strong>
+          <span>$3 / mo</span>
+        </div>
+        <div class="tier">
+          <strong>Supporter · Yearly</strong>
+          <span>$25 / yr</span>
+        </div>
+        <a href="#" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Learn more</a>
+      </div>
+    </section>
+
+    <!-- ========== COMMUNITY CTA ========== -->
+    <div class="community-cta">
+      <a href="#" class="community-card discord">
+        <div class="community-icon"><i class="fab fa-discord"></i></div>
+        <div>
+          <h3>Join the Discord</h3>
+          <p>Trade, theorycraft, and find a tribe.</p>
+        </div>
+      </a>
+      <a href="#" class="community-card companion">
+        <div class="community-icon"><i class="fas fa-mobile-alt"></i></div>
+        <div>
+          <h3>Dune Companion App</h3>
+          <p>Available for iOS and Android.</p>
+        </div>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div>
+      <a href="#">Home</a>
+      <a href="#database">Database</a>
+      <a href="#tools">Tools</a>
+      <a href="#">Server Status</a>
+      <a href="#">Feedback</a>
+    </div>
+    <div>© 2025 dune.gaming.tools · Not affiliated with Funcom</div>
+  </footer>
+
+  <!-- ========== BACK TO TOP ========== -->
+  <button class="back-to-top" id="backToTop" title="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 400) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.querySelectorAll('.filter-chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        document.querySelectorAll('.filter-chip').forEach(function (c) {
+          c.classList.remove('active');
+        });
+        chip.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
