@@ -14,27 +14,24 @@
     }
 
     :root {
-      /* ---- Desert base ---- */
-      --sand-deep: #0f0c08;          /* deep shadow, near-black ochre */
-      --sand-panel: #1a1510;         /* panel: dark dune */
-      --sand-panel-light: #241d16;   /* lighter dune */
-      --sand-border: #3a2f24;        /* dune edge */
-      --sand-text: #e8ddcc;          /* bone / sand text */
-      --sand-muted: #9c8d7a;         /* faded parchment */
+      --sand-deep: #0f0c08;
+      --sand-panel: #1a1510;
+      --sand-panel-light: #241d16;
+      --sand-border: #3a2f24;
+      --sand-text: #e8ddcc;
+      --sand-muted: #9c8d7a;
 
-      /* ---- Spice (the mélange) ---- */
-      --spice: #d4722a;              /* melange orange */
+      --spice: #d4722a;
       --spice-glow: #ff9a4d;
       --spice-deep: #a8531a;
 
-      /* ---- House factions ---- */
-      --atreides-green: #3f7d5c;     /* House Atreides */
+      --atreides-green: #3f7d5c;
       --atreides-light: #6bbf8e;
-      --harkonnen-red: #a32e2e;      /* House Harkonnen */
+      --harkonnen-red: #a32e2e;
       --harkonnen-light: #d95252;
-      --fremen-blue: #3a6ea5;        /* Fremen sietch / eyes of ibad */
+      --fremen-blue: #3a6ea5;
       --fremen-light: #6fa8dc;
-      --corrino-gold: #c9a227;       /* Imperial gold */
+      --corrino-gold: #c9a227;
       --corrino-light: #f0d060;
 
       --shadow: 0 10px 30px rgba(0,0,0,0.65);
@@ -50,20 +47,13 @@
         radial-gradient(circle at 85% 8%, rgba(212, 114, 42, 0.10) 0%, transparent 40%),
         radial-gradient(circle at 10% 20%, rgba(63, 125, 92, 0.06) 0%, transparent 45%),
         radial-gradient(circle at 50% 95%, rgba(58, 110, 165, 0.07) 0%, transparent 45%),
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 3px,
-          rgba(255,255,255,0.012) 3px,
-          rgba(255,255,255,0.012) 4px
-        );
+        repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.012) 3px, rgba(255,255,255,0.012) 4px);
       color: var(--sand-text);
       line-height: 1.5;
-      padding: 0;
       min-height: 100vh;
     }
 
-    /* ---------- TOP UTILITY BAR ---------- */
+    /* ---------- UTILITY BAR ---------- */
     .utility-bar {
       background: #0a0806;
       border-bottom: 1px solid var(--sand-border);
@@ -84,36 +74,37 @@
       flex-wrap: wrap;
     }
 
-    .utility-left,
-    .utility-right {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      flex-wrap: wrap;
-    }
+    .utility-left, .utility-right { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
 
-    .utility-bar a {
+    .utility-bar a, .utility-bar button {
       color: var(--sand-muted);
       text-decoration: none;
       transition: var(--transition);
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      cursor: pointer;
     }
 
-    .utility-bar a:hover { color: var(--spice); }
+    .utility-bar a:hover, .utility-bar button:hover { color: var(--spice); }
 
     .remove-ads {
-      color: var(--corrino-gold);
-      border: 1px solid var(--corrino-gold);
+      color: var(--corrino-gold) !important;
+      border: 1px solid var(--corrino-gold) !important;
       padding: 0.2rem 0.6rem;
       border-radius: 2px;
       font-weight: 600;
     }
 
-    .remove-ads:hover { background: rgba(201, 162, 39, 0.12); color: var(--corrino-light); }
+    .remove-ads:hover { background: rgba(201, 162, 39, 0.12); color: var(--corrino-light) !important; }
 
-    /* ---------- MAIN HEADER (one headline, one action) ---------- */
+    /* ---------- SITE HEADER ---------- */
     .site-header {
       position: sticky;
       top: 0;
@@ -141,6 +132,11 @@
       gap: 0.75rem;
       text-decoration: none;
       flex-shrink: 0;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+      color: inherit;
     }
 
     .brand-mark {
@@ -156,11 +152,7 @@
       box-shadow: 0 0 18px rgba(212, 114, 42, 0.35);
     }
 
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.05;
-    }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.05; text-align: left; }
 
     .brand-text strong {
       font-size: 1.05rem;
@@ -178,16 +170,13 @@
       margin-top: 2px;
     }
 
-    .main-nav {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      flex-wrap: wrap;
-    }
+    .main-nav { display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap; }
 
-    .main-nav a {
+    .main-nav button {
       color: var(--sand-muted);
-      text-decoration: none;
+      background: none;
+      border: none;
+      font-family: inherit;
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 1.5px;
@@ -199,16 +188,14 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
+      cursor: pointer;
     }
 
-    .main-nav a:hover { color: var(--sand-text); background: rgba(255,255,255,0.04); }
+    .main-nav button:hover { color: var(--sand-text); background: rgba(255,255,255,0.04); }
 
-    .main-nav a.active {
-      color: var(--spice);
-      background: rgba(212, 114, 42, 0.10);
-    }
+    .main-nav button.active { color: var(--spice); background: rgba(212, 114, 42, 0.10); }
 
-    .main-nav a.active::after {
+    .main-nav button.active::after {
       content: '';
       position: absolute;
       left: 0.85rem;
@@ -218,14 +205,13 @@
       background: var(--spice);
     }
 
-    /* Server Status — high-frequency utility gets its own accent */
     .server-status {
-      border: 1px solid var(--atreides-green);
+      border: 1px solid var(--atreides-green) !important;
       color: var(--atreides-light) !important;
-      background: rgba(63, 125, 92, 0.10);
+      background: rgba(63, 125, 92, 0.10) !important;
     }
 
-    .server-status:hover { background: rgba(63, 125, 92, 0.2); color: var(--atreides-light) !important; }
+    .server-status:hover { background: rgba(63, 125, 92, 0.2) !important; }
 
     .server-status .dot {
       width: 7px;
@@ -238,7 +224,6 @@
 
     @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
 
-    /* NEW badge — subdued, not outshouting the brand */
     .new-badge {
       font-size: 0.55rem;
       background: var(--corrino-gold);
@@ -250,18 +235,20 @@
       margin-left: 0.15rem;
     }
 
-    /* ---------- PAGE CONTAINER ---------- */
-    .app {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 1.5rem;
+    /* ---------- PAGES ---------- */
+    .app { max-width: 1440px; margin: 0 auto; padding: 1.5rem; }
+
+    .page { display: none; animation: fadeIn 0.25s ease; }
+    .page.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ---------- HERO (one headline, one primary action) ---------- */
+    /* ---------- HERO ---------- */
     .hero {
-      background:
-        linear-gradient(145deg, rgba(36, 29, 22, 0.9), rgba(15, 12, 8, 0.95)),
-        radial-gradient(circle at 80% 20%, rgba(212, 114, 42, 0.18) 0%, transparent 55%);
+      background: linear-gradient(145deg, rgba(36, 29, 22, 0.9), rgba(15, 12, 8, 0.95)), radial-gradient(circle at 80% 20%, rgba(212, 114, 42, 0.18) 0%, transparent 55%);
       border: 1px solid var(--sand-border);
       border-left: 4px solid var(--spice);
       border-radius: var(--radius);
@@ -272,7 +259,6 @@
       box-shadow: var(--shadow);
     }
 
-    /* Subtle sandworm ripple motif */
     .hero::before {
       content: '';
       position: absolute;
@@ -282,9 +268,7 @@
       height: 320px;
       border: 1px solid rgba(212, 114, 42, 0.15);
       border-radius: 50%;
-      box-shadow:
-        0 0 0 30px rgba(212, 114, 42, 0.05),
-        0 0 0 60px rgba(212, 114, 42, 0.03);
+      box-shadow: 0 0 0 30px rgba(212, 114, 42, 0.05), 0 0 0 60px rgba(212, 114, 42, 0.03);
       pointer-events: none;
     }
 
@@ -300,12 +284,7 @@
       gap: 0.6rem;
     }
 
-    .hero-kicker::before {
-      content: '';
-      width: 32px;
-      height: 1px;
-      background: var(--spice);
-    }
+    .hero-kicker::before { content: ''; width: 32px; height: 1px; background: var(--spice); }
 
     .hero h1 {
       font-size: 2.8rem;
@@ -319,27 +298,11 @@
       position: relative;
     }
 
-    .hero h1 em {
-      font-style: normal;
-      color: var(--spice);
-    }
+    .hero h1 em { font-style: normal; color: var(--spice); }
 
-    .hero p {
-      color: var(--sand-muted);
-      font-size: 1.05rem;
-      max-width: 640px;
-      margin-bottom: 1.5rem;
-      position: relative;
-    }
+    .hero p { color: var(--sand-muted); font-size: 1.05rem; max-width: 640px; margin-bottom: 1.5rem; position: relative; }
 
-    /* Coverage / freshness signals — builds trust */
-    .coverage-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1.75rem;
-      position: relative;
-    }
+    .coverage-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.75rem; position: relative; }
 
     .coverage-chip {
       display: inline-flex;
@@ -357,16 +320,9 @@
     }
 
     .coverage-chip i { color: var(--atreides-light); font-size: 0.7rem; }
-
     .coverage-chip strong { color: var(--sand-text); }
 
-    /* Primary action */
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      position: relative;
-    }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; position: relative; }
 
     .btn {
       display: inline-flex;
@@ -382,6 +338,7 @@
       transition: var(--transition);
       border-radius: 2px;
       border: 1px solid transparent;
+      font-family: inherit;
     }
 
     .btn-primary {
@@ -392,15 +349,10 @@
 
     .btn-primary:hover { background: var(--spice-glow); box-shadow: 0 0 32px rgba(255, 154, 77, 0.55); }
 
-    .btn-ghost {
-      background: transparent;
-      color: var(--sand-text);
-      border-color: var(--sand-border);
-    }
-
+    .btn-ghost { background: transparent; color: var(--sand-text); border-color: var(--sand-border); }
     .btn-ghost:hover { border-color: var(--spice); color: var(--spice); }
 
-    /* ---------- DATABASE SEARCH (discoverability) ---------- */
+    /* ---------- DATABASE SEARCH ---------- */
     .database-search {
       background: var(--sand-panel);
       border: 1px solid var(--sand-border);
@@ -410,12 +362,7 @@
       box-shadow: var(--shadow);
     }
 
-    .search-form {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
+    .search-form { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem; }
 
     .search-form .search-field {
       flex: 1;
@@ -429,10 +376,7 @@
       transition: var(--transition);
     }
 
-    .search-form .search-field:focus-within {
-      border-color: var(--spice);
-      box-shadow: 0 0 16px rgba(212, 114, 42, 0.2);
-    }
+    .search-form .search-field:focus-within { border-color: var(--spice); box-shadow: 0 0 16px rgba(212, 114, 42, 0.2); }
 
     .search-form .search-field i { color: var(--sand-muted); font-size: 0.85rem; margin-right: 0.6rem; }
 
@@ -448,22 +392,9 @@
 
     .search-form input::placeholder { color: var(--sand-muted); }
 
-    /* Faceted filters */
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      align-items: center;
-    }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
 
-    .filter-label {
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--sand-muted);
-      font-weight: 700;
-      margin-right: 0.25rem;
-    }
+    .filter-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--sand-muted); font-weight: 700; margin-right: 0.25rem; }
 
     .filter-chip {
       background: transparent;
@@ -477,13 +408,13 @@
       cursor: pointer;
       border-radius: 2px;
       transition: var(--transition);
+      font-family: inherit;
     }
 
     .filter-chip:hover { color: var(--sand-text); border-color: var(--sand-muted); }
-
     .filter-chip.active { background: var(--spice); color: #1a0e04; border-color: var(--spice); }
 
-    /* ---------- SECTION TITLES ---------- */
+    /* ---------- SECTION HEADS ---------- */
     .section-head {
       display: flex;
       align-items: baseline;
@@ -508,18 +439,24 @@
 
     .section-head h2 i { color: var(--spice); font-size: 0.95rem; }
 
-    .section-head a {
+    .section-head button {
       font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       color: var(--spice);
       text-decoration: none;
       font-weight: 700;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
     }
 
-    .section-head a:hover { color: var(--spice-glow); }
+    .section-head button:hover { color: var(--spice-glow); }
 
-    /* ---------- ENTRY CARD GRID ---------- */
+    .count { font-size: 0.72rem; color: var(--sand-muted); font-weight: 400; letter-spacing: 1px; }
+
+    /* ---------- ENTRY GRID ---------- */
     .entry-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -541,6 +478,9 @@
       position: relative;
       text-decoration: none;
       color: inherit;
+      text-align: left;
+      font-family: inherit;
+      width: 100%;
     }
 
     .entry-card:hover {
@@ -549,7 +489,6 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.5);
     }
 
-    /* Faction colour coding by category */
     .entry-card.quest { border-left-color: var(--fremen-blue); }
     .entry-card.quest:hover { border-left-color: var(--fremen-light); }
 
@@ -565,12 +504,7 @@
     .entry-card.vehicle { border-left-color: var(--spice); }
     .entry-card.vehicle:hover { border-left-color: var(--spice-glow); }
 
-    .entry-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 0.6rem;
-    }
+    .entry-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.6rem; }
 
     .entry-icon {
       width: 34px;
@@ -591,13 +525,7 @@
     .entry-card.contract .entry-icon { color: var(--harkonnen-light); background: rgba(163, 46, 46, 0.12); }
     .entry-card.vehicle .entry-icon { color: var(--spice-glow); background: rgba(212, 114, 42, 0.12); }
 
-    .entry-name {
-      font-size: 0.98rem;
-      font-weight: 600;
-      color: var(--sand-text);
-      line-height: 1.25;
-      flex: 1;
-    }
+    .entry-name { font-size: 0.98rem; font-weight: 600; color: var(--sand-text); line-height: 1.25; flex: 1; }
 
     .entry-category {
       font-size: 0.65rem;
@@ -611,12 +539,7 @@
       gap: 0.4rem;
     }
 
-    .entry-category::before {
-      content: '';
-      width: 12px;
-      height: 1px;
-      background: var(--sand-muted);
-    }
+    .entry-category::before { content: ''; width: 12px; height: 1px; background: var(--sand-muted); }
 
     .entry-card.quest .entry-category { color: var(--fremen-light); }
     .entry-card.quest .entry-category::before { background: var(--fremen-light); }
@@ -649,13 +572,13 @@
       color: inherit;
       transition: var(--transition);
       box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      width: 100%;
     }
 
-    .tool-card:hover {
-      border-color: var(--spice);
-      background: var(--sand-panel-light);
-      transform: translateY(-2px);
-    }
+    .tool-card:hover { border-color: var(--spice); background: var(--sand-panel-light); transform: translateY(-2px); }
 
     .tool-icon {
       width: 40px;
@@ -677,19 +600,187 @@
       letter-spacing: 1px;
       color: var(--sand-text);
       margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
     }
 
-    .tool-card p {
+    .tool-card p { font-size: 0.78rem; color: var(--sand-muted); line-height: 1.4; }
+
+    .soon-tag {
+      font-size: 0.55rem;
+      background: var(--harkonnen-red);
+      color: #fff;
+      padding: 0.1rem 0.35rem;
+      border-radius: 2px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    /* ---------- ENTRY DETAIL ---------- */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--spice);
+      text-decoration: none;
       font-size: 0.78rem;
-      color: var(--sand-muted);
-      line-height: 1.4;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
     }
 
-    /* ---------- MEMBERSHIP PATHWAY (not a buried banner) ---------- */
+    .back-link:hover { color: var(--spice-glow); }
+
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 900px) { .detail-layout { grid-template-columns: 1fr; } }
+
+    .detail-main {
+      background: var(--sand-panel);
+      border: 1px solid var(--sand-border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--spice);
+    }
+
+    .detail-main h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 0.4rem;
+      color: var(--sand-text);
+    }
+
+    .detail-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+
+    .detail-tags span {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.25rem 0.65rem;
+      border-radius: 2px;
+      font-weight: 700;
+      border: 1px solid;
+    }
+
+    .detail-main p { color: var(--sand-muted); font-size: 0.95rem; margin-bottom: 1rem; }
+
+    .stat-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.88rem; }
+
+    .stat-table th {
+      text-align: left;
+      padding: 0.6rem 0.75rem;
+      background: rgba(255,255,255,0.04);
+      color: var(--sand-muted);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--sand-border);
+    }
+
+    .stat-table td { padding: 0.6rem 0.75rem; color: var(--sand-muted); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .stat-table td:first-child { color: var(--sand-text); font-weight: 600; }
+
+    .detail-side {
+      background: var(--sand-panel);
+      border: 1px solid var(--sand-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      border-top: 3px solid var(--corrino-gold);
+      height: fit-content;
+    }
+
+    .detail-side h3 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      color: var(--corrino-light);
+    }
+
+    .side-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.82rem;
+      gap: 0.5rem;
+    }
+
+    .side-row span:first-child { color: var(--sand-muted); }
+    .side-row span:last-child { color: var(--sand-text); font-weight: 600; text-align: right; }
+
+    /* ---------- CALCULATOR ---------- */
+    .calc-form-detail { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
+
+    .calc-form-detail input, .calc-form-detail select {
+      background: #0c0a07;
+      border: 1px solid var(--sand-border);
+      border-radius: 2px;
+      padding: 0.7rem 1rem;
+      color: var(--sand-text);
+      font-size: 0.85rem;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .calc-form-detail input::placeholder { color: var(--sand-muted); }
+    .calc-form-detail input:focus, .calc-form-detail select:focus { border-color: var(--spice); }
+
+    .calc-result {
+      margin-top: 1rem;
+      background: #0c0a07;
+      border: 1px solid var(--corrino-gold);
+      border-radius: var(--radius);
+      padding: 1rem;
+      display: none;
+    }
+
+    .calc-result.visible { display: block; }
+
+    .calc-result h4 {
+      color: var(--corrino-light);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .calc-result-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.82rem;
+    }
+
+    .calc-result-row:last-child { border-bottom: none; }
+    .calc-result-row span:first-child { color: var(--sand-muted); }
+    .calc-result-row span:last-child { color: var(--corrino-light); font-weight: 700; }
+
+    /* ---------- MEMBERSHIP ---------- */
     .membership {
-      background:
-        linear-gradient(135deg, rgba(201, 162, 39, 0.10), rgba(212, 114, 42, 0.06)),
-        var(--sand-panel);
+      background: linear-gradient(135deg, rgba(201, 162, 39, 0.10), rgba(212, 114, 42, 0.06)), var(--sand-panel);
       border: 1px solid var(--corrino-gold);
       border-radius: var(--radius);
       padding: 1.75rem 2rem;
@@ -710,13 +801,12 @@
       letter-spacing: 1.5px;
       color: var(--corrino-light);
       margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
 
-    .membership p {
-      color: var(--sand-muted);
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
+    .membership p { color: var(--sand-muted); font-size: 0.9rem; margin-bottom: 1rem; }
 
     .membership-benefits {
       list-style: none;
@@ -726,21 +816,10 @@
       margin-bottom: 1.25rem;
     }
 
-    .membership-benefits li {
-      font-size: 0.82rem;
-      color: var(--sand-text);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
+    .membership-benefits li { font-size: 0.82rem; color: var(--sand-text); display: flex; align-items: center; gap: 0.5rem; }
     .membership-benefits i { color: var(--corrino-gold); font-size: 0.75rem; }
 
-    .tier-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
+    .tier-cards { display: flex; flex-direction: column; gap: 0.6rem; }
 
     .tier {
       background: #0c0a07;
@@ -753,21 +832,18 @@
       gap: 1rem;
       transition: var(--transition);
       cursor: pointer;
+      font-family: inherit;
+      color: inherit;
+      width: 100%;
+      text-align: left;
     }
 
     .tier:hover { border-color: var(--corrino-gold); }
-
     .tier strong { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px; color: var(--sand-text); }
-
     .tier span { font-size: 0.9rem; font-weight: 700; color: var(--corrino-light); }
 
-    /* ---------- COMPANION / DISCORD CTA ---------- */
-    .community-cta {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.85rem;
-      margin-bottom: 2.5rem;
-    }
+    /* ---------- COMMUNITY CTA ---------- */
+    .community-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 2.5rem; }
 
     @media (max-width: 700px) { .community-cta { grid-template-columns: 1fr; } }
 
@@ -783,16 +859,16 @@
       color: inherit;
       transition: var(--transition);
       box-shadow: var(--shadow);
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      width: 100%;
     }
 
-    .community-card:hover { transform: translateY(-3px); }
-
+    .community-card:hover { transform: translateY(-3px); background: var(--sand-panel-light); }
     .community-card.discord { border-left: 3px solid #5865F2; }
-    .community-card.discord:hover { background: var(--sand-panel-light); }
     .community-card.discord .community-icon { background: rgba(88, 101, 242, 0.15); color: #8a94ff; }
-
     .community-card.companion { border-left: 3px solid var(--atreides-green); }
-    .community-card.companion:hover { background: var(--sand-panel-light); }
     .community-card.companion .community-icon { background: rgba(63, 125, 92, 0.15); color: var(--atreides-light); }
 
     .community-icon {
@@ -806,16 +882,23 @@
       flex-shrink: 0;
     }
 
-    .community-card h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--sand-text);
-      margin-bottom: 0.15rem;
+    .community-card h3 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--sand-text); margin-bottom: 0.15rem; }
+    .community-card p { font-size: 0.8rem; color: var(--sand-muted); }
+
+    /* ---------- EMPTY STATE ---------- */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      color: var(--sand-muted);
+      background: var(--sand-panel);
+      border: 1px dashed var(--sand-border);
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
     }
 
-    .community-card p { font-size: 0.8rem; color: var(--sand-muted); }
+    .empty-state i { font-size: 2.5rem; color: var(--sand-border); margin-bottom: 1rem; }
+    .empty-state h3 { color: var(--sand-text); font-weight: 700; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 1px; }
+    .empty-state p { font-size: 0.88rem; }
 
     /* ---------- FOOTER ---------- */
     .site-footer {
@@ -834,14 +917,22 @@
       letter-spacing: 1px;
     }
 
-    .site-footer a {
+    .site-footer button, .site-footer a {
       color: var(--sand-muted);
       text-decoration: none;
       margin-right: 1.25rem;
       transition: var(--transition);
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      cursor: pointer;
+      padding: 0;
     }
 
-    .site-footer a:hover { color: var(--spice); }
+    .site-footer button:hover, .site-footer a:hover { color: var(--spice); }
 
     /* ---------- BACK TO TOP ---------- */
     .back-to-top {
@@ -867,13 +958,52 @@
     }
 
     .back-to-top.visible { opacity: 1; pointer-events: auto; }
-
     .back-to-top:hover { background: var(--spice-glow); transform: translateY(-3px); }
+
+    /* ---------- TOAST ---------- */
+    .toast-container {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--sand-panel-light);
+      border: 1px solid var(--spice);
+      color: var(--sand-text);
+      padding: 0.85rem 1.5rem;
+      border-radius: 2px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      animation: toastIn 0.3s ease;
+      pointer-events: auto;
+      max-width: 90vw;
+      text-transform: uppercase;
+    }
+
+    .toast i { color: var(--spice); }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     @media (max-width: 900px) {
       .hero h1 { font-size: 2rem; }
       .hero { padding: 2rem 1.5rem; }
-      .main-nav a { font-size: 0.7rem; padding: 0.45rem 0.55rem; }
+      .main-nav button { font-size: 0.7rem; padding: 0.45rem 0.55rem; }
       .membership-benefits { grid-template-columns: 1fr; }
     }
   </style>
@@ -888,9 +1018,9 @@
         <span>Dune: Awakening</span>
       </div>
       <div class="utility-right">
-        <a href="#" class="remove-ads"><i class="fas fa-ban"></i> Remove Ads</a>
-        <a href="#"><i class="fab fa-discord"></i> Discord</a>
-        <a href="#"><i class="fas fa-user"></i> Sign In</a>
+        <button class="remove-ads" onclick="comingSoon('Ad-free membership')"><i class="fas fa-ban"></i> Remove Ads</button>
+        <button onclick="comingSoon('Discord server')"><i class="fab fa-discord"></i> Discord</button>
+        <button onclick="comingSoon('Sign in')"><i class="fas fa-user"></i> Sign In</button>
       </div>
     </div>
   </div>
@@ -898,322 +1028,934 @@
   <!-- ========== SITE HEADER ========== -->
   <header class="site-header">
     <div class="header-inner">
-      <a href="#" class="brand">
+      <button class="brand" onclick="navigate('home')">
         <div class="brand-mark"><i class="fas fa-sun"></i></div>
         <div class="brand-text">
           <strong>Dune Awakening</strong>
           <small>Database</small>
         </div>
-      </a>
+      </button>
       <nav class="main-nav">
-        <a href="#" class="active">Home</a>
-        <a href="#database">Database</a>
-        <a href="#tools">Tools</a>
-        <a href="#">Companion App <span class="new-badge">New</span></a>
-        <a href="#">Deep Desert</a>
-        <a href="#">Hagga Basin</a>
-        <a href="#" class="server-status"><span class="dot"></span> Server Status</a>
+        <button data-nav="home" onclick="navigate('home')" class="active">Home</button>
+        <button data-nav="database" onclick="navigate('database')">Database</button>
+        <button data-nav="tools" onclick="navigate('tools')">Tools</button>
+        <button onclick="comingSoon('Companion App')">Companion App <span class="new-badge">New</span></button>
+        <button onclick="comingSoon('Deep Desert map')">Deep Desert</button>
+        <button onclick="comingSoon('Hagga Basin map')">Hagga Basin</button>
+        <button class="server-status" onclick="comingSoon('Live server status')"><span class="dot"></span> Server Status</button>
       </nav>
     </div>
   </header>
 
   <main class="app">
 
-    <!-- ========== HERO — one headline, one action ========== -->
-    <section class="hero">
-      <div class="hero-kicker">Arrakis Awaits</div>
-      <h1>Master <em>Dune: Awakening</em> with the all-in-one database.</h1>
-      <p>Items, recipes, quests, contracts, vehicles, and resources — searchable, cross-linked, and updated for launch patches.</p>
+    <!-- ================================================================
+         PAGE: HOME
+         ================================================================ -->
+    <section id="page-home" class="page active">
 
-      <div class="coverage-row">
-        <span class="coverage-chip"><i class="fas fa-database"></i> <strong>4,200+</strong> entries</span>
-        <span class="coverage-chip"><i class="fas fa-code-branch"></i> Version <strong>1.0.4</strong></span>
-        <span class="coverage-chip"><i class="fas fa-clock"></i> Updated <strong>2h ago</strong></span>
-        <span class="coverage-chip"><i class="fas fa-check-circle"></i> Ascension-ready</span>
+      <section class="hero">
+        <div class="hero-kicker">Arrakis Awaits</div>
+        <h1>Master <em>Dune: Awakening</em> with the all-in-one database.</h1>
+        <p>Items, recipes, quests, contracts, vehicles, and resources — searchable, cross-linked, and updated for launch patches.</p>
+
+        <div class="coverage-row">
+          <span class="coverage-chip"><i class="fas fa-database"></i> <strong>4,200+</strong> entries</span>
+          <span class="coverage-chip"><i class="fas fa-code-branch"></i> Version <strong>1.0.4</strong></span>
+          <span class="coverage-chip"><i class="fas fa-clock"></i> Updated <strong>2h ago</strong></span>
+          <span class="coverage-chip"><i class="fas fa-check-circle"></i> Ascension-ready</span>
+        </div>
+
+        <div class="cta-row">
+          <button class="btn btn-primary" onclick="navigate('database')"><i class="fas fa-search"></i> Browse Database</button>
+          <button class="btn btn-ghost" onclick="comingSoon('Discord server')"><i class="fab fa-discord"></i> Join Discord</button>
+        </div>
+      </section>
+
+      <section class="database-search">
+        <form class="search-form" onsubmit="event.preventDefault(); homeSearch();">
+          <div class="search-field">
+            <i class="fas fa-search"></i>
+            <input type="text" id="homeSearchInput" placeholder="Search items, recipes, quests, contracts...">
+          </div>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Search</button>
+        </form>
+        <div class="filter-row">
+          <span class="filter-label">Filter</span>
+          <button class="filter-chip active" data-filter="all">All</button>
+          <button class="filter-chip" data-filter="component">Items</button>
+          <button class="filter-chip" data-filter="resource">Recipes</button>
+          <button class="filter-chip" data-filter="quest">Quests</button>
+          <button class="filter-chip" data-filter="contract">Contracts</button>
+          <button class="filter-chip" data-filter="vehicle">Vehicles</button>
+        </div>
+      </section>
+
+      <div class="section-head">
+        <h2><i class="fas fa-fire"></i> Most Popular Entries</h2>
+        <button onclick="navigate('database')">View all <i class="fas fa-arrow-right"></i></button>
       </div>
 
-      <div class="cta-row">
-        <a href="#database" class="btn btn-primary"><i class="fas fa-search"></i> Browse Database</a>
-        <a href="#" class="btn btn-ghost"><i class="fab fa-discord"></i> Join Discord</a>
+      <div class="entry-grid" id="homeEntryGrid"></div>
+
+      <div class="section-head" id="homeToolsHead">
+        <h2><i class="fas fa-tools"></i> Tools</h2>
+        <button onclick="navigate('tools')">All tools <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="tools-strip" id="homeToolsGrid"></div>
+
+      <section class="membership">
+        <div>
+          <h2><i class="fas fa-crown"></i> Support the Site</h2>
+          <p>Consider supporting the site with one of our membership options and enjoy an ad-free experience.</p>
+          <ul class="membership-benefits">
+            <li><i class="fas fa-check"></i> Ad-free browsing</li>
+            <li><i class="fas fa-check"></i> Early access to new tools</li>
+            <li><i class="fas fa-check"></i> Member badge on Discord</li>
+            <li><i class="fas fa-check"></i> Priority data updates</li>
+          </ul>
+        </div>
+        <div class="tier-cards">
+          <button class="tier" onclick="comingSoon('Membership checkout')">
+            <strong>Supporter · Monthly</strong>
+            <span>$3 / mo</span>
+          </button>
+          <button class="tier" onclick="comingSoon('Membership checkout')">
+            <strong>Supporter · Yearly</strong>
+            <span>$25 / yr</span>
+          </button>
+          <button class="btn btn-primary" onclick="navigate('membership')"><i class="fas fa-arrow-right"></i> Learn more</button>
+        </div>
+      </section>
+
+      <div class="community-cta">
+        <button class="community-card discord" onclick="comingSoon('Discord server')">
+          <div class="community-icon"><i class="fab fa-discord"></i></div>
+          <div>
+            <h3>Join the Discord</h3>
+            <p>Trade, theorycraft, and find a tribe.</p>
+          </div>
+        </button>
+        <button class="community-card companion" onclick="comingSoon('Companion App')">
+          <div class="community-icon"><i class="fas fa-mobile-alt"></i></div>
+          <div>
+            <h3>Dune Companion App</h3>
+            <p>Available for iOS and Android.</p>
+          </div>
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ================================================================
+         PAGE: DATABASE
+         ================================================================ -->
+    <section id="page-database" class="page">
+      <div class="section-head mb-2" style="margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.4rem;"><i class="fas fa-database"></i> Database</h2>
+        <span class="count" id="databaseCount"></span>
+      </div>
+
+      <section class="database-search">
+        <form class="search-form" onsubmit="event.preventDefault(); renderDatabase();">
+          <div class="search-field">
+            <i class="fas fa-search"></i>
+            <input type="text" id="databaseSearchInput" placeholder="Search items, recipes, quests, contracts..." oninput="renderDatabase()">
+          </div>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Search</button>
+        </form>
+        <div class="filter-row" id="databaseFilters">
+          <span class="filter-label">Filter</span>
+          <button class="filter-chip active" data-filter="all">All</button>
+          <button class="filter-chip" data-filter="quest">Quests</button>
+          <button class="filter-chip" data-filter="component">Components</button>
+          <button class="filter-chip" data-filter="resource">Resources</button>
+          <button class="filter-chip" data-filter="contract">Contracts</button>
+          <button class="filter-chip" data-filter="vehicle">Vehicles</button>
+        </div>
+      </section>
+
+      <div class="entry-grid" id="databaseEntryGrid"></div>
+
+      <div class="empty-state" id="databaseEmpty" style="display:none;">
+        <i class="fas fa-database"></i>
+        <h3>No entries found</h3>
+        <p>Try a different search term or category filter.</p>
       </div>
     </section>
 
-    <!-- ========== DATABASE SEARCH — discoverability at point of entry ========== -->
-    <section class="database-search" id="database">
-      <form class="search-form" onsubmit="event.preventDefault();">
-        <div class="search-field">
-          <i class="fas fa-search"></i>
-          <input type="text" placeholder="Search items, recipes, quests, contracts...">
+    <!-- ================================================================
+         PAGE: ENTRY DETAIL
+         ================================================================ -->
+    <section id="page-detail" class="page">
+      <button class="back-link" onclick="navigate('database')"><i class="fas fa-arrow-left"></i> Back to Database</button>
+      <div id="detailContent"></div>
+    </section>
+
+    <!-- ================================================================
+         PAGE: TOOLS
+         ================================================================ -->
+    <section id="page-tools" class="page">
+      <div class="section-head mb-2" style="margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.4rem;"><i class="fas fa-tools"></i> Tools</h2>
+        <span class="count">Companion utilities for Arrakis</span>
+      </div>
+
+      <div class="tools-strip" id="toolsGrid"></div>
+
+      <div class="section-head">
+        <h2><i class="fas fa-calculator"></i> Resource Calculator</h2>
+      </div>
+
+      <section class="database-search" style="margin-bottom: 2rem;">
+        <form class="search-form" onsubmit="event.preventDefault(); runResourceCalculator();" style="margin-bottom: 1rem;">
+          <div class="search-field">
+            <i class="fas fa-cube"></i>
+            <input type="text" id="recipeInput" placeholder="Enter recipe (e.g. Plasteel Plate, Spice Melange)..." required>
+          </div>
+          <div class="search-field" style="max-width: 160px;">
+            <i class="fas fa-hashtag"></i>
+            <input type="number" id="recipeQty" placeholder="Qty" min="1" value="1" required>
+          </div>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-calculator"></i> Calculate</button>
+        </form>
+        <div id="recipeResult" class="calc-result">
+          <h4><i class="fas fa-check-circle"></i> Material Breakdown</h4>
+          <div id="recipeResultRows"></div>
         </div>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Search</button>
-      </form>
-      <div class="filter-row">
-        <span class="filter-label">Filter</span>
-        <button class="filter-chip active">All</button>
-        <button class="filter-chip">Items</button>
-        <button class="filter-chip">Recipes</button>
-        <button class="filter-chip">Quests</button>
-        <button class="filter-chip">Contracts</button>
-        <button class="filter-chip">Vehicles</button>
-        <button class="filter-chip">Resources</button>
+      </section>
+
+      <div class="section-head">
+        <h2><i class="fas fa-info-circle"></i> About the Tools</h2>
+      </div>
+      <div style="background: var(--sand-panel); border: 1px solid var(--sand-border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2rem; box-shadow: var(--shadow);">
+        <p style="color: var(--sand-muted); font-size: 0.9rem; line-height: 1.6;">Tools marked with a red "Soon" tag are in active development. The Resource Calculator is fully functional and uses the live recipe database. Check back regularly for new tools and data updates.</p>
       </div>
     </section>
 
-    <!-- ========== MOST POPULAR ENTRIES — card grid ========== -->
-    <div class="section-head">
-      <h2><i class="fas fa-fire"></i> Most Popular Entries</h2>
-      <a href="#">View all <i class="fas fa-arrow-right"></i></a>
-    </div>
+    <!-- ================================================================
+         PAGE: MEMBERSHIP
+         ================================================================ -->
+    <section id="page-membership" class="page">
+      <div class="section-head mb-2" style="margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.4rem;"><i class="fas fa-crown" style="color: var(--corrino-light);"></i> Membership</h2>
+      </div>
 
-    <div class="entry-grid">
-      <a href="#" class="entry-card quest">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-scroll"></i></div>
-          <div class="entry-name">From The Ashes</div>
-        </div>
-        <div class="entry-category">Journey · Main Quests</div>
-      </a>
-      <a href="#" class="entry-card component">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-cog"></i></div>
-          <div class="entry-name">Plasteel Plate</div>
-        </div>
-        <div class="entry-category">Misc · Components</div>
-      </a>
-      <a href="#" class="entry-card resource">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-flask"></i></div>
-          <div class="entry-name">Mutated Brain Tissue</div>
-        </div>
-        <div class="entry-category">Misc · Raw Resources</div>
-      </a>
-      <a href="#" class="entry-card quest">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-scroll"></i></div>
-          <div class="entry-name">The Janusian Faithful</div>
-        </div>
-        <div class="entry-category">Journey · Main Quests</div>
-      </a>
-      <a href="#" class="entry-card component">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-cog"></i></div>
-          <div class="entry-name">Thermoelectric Cooler</div>
-        </div>
-        <div class="entry-category">Misc · Components</div>
-      </a>
-      <a href="#" class="entry-card component">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-cog"></i></div>
-          <div class="entry-name">Industrial Pump</div>
-        </div>
-        <div class="entry-category">Misc · Components</div>
-      </a>
-      <a href="#" class="entry-card contract">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-file-signature"></i></div>
-          <div class="entry-name">The Kirab Cortex</div>
-        </div>
-        <div class="entry-category">Contracts · Regular</div>
-      </a>
-      <a href="#" class="entry-card contract">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-file-signature"></i></div>
-          <div class="entry-name">Patient Zero</div>
-        </div>
-        <div class="entry-category">Contracts · Regular</div>
-      </a>
-      <a href="#" class="entry-card vehicle">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-plane"></i></div>
-          <div class="entry-name">Carrier Ornithopter Cargo Container</div>
-        </div>
-        <div class="entry-category">Vehicles · Carry-all</div>
-      </a>
-      <a href="#" class="entry-card component">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-cog"></i></div>
-          <div class="entry-name">Advanced Machinery</div>
-        </div>
-        <div class="entry-category">Misc · Components</div>
-      </a>
-      <a href="#" class="entry-card component">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-cog"></i></div>
-          <div class="entry-name">Complex Machinery</div>
-        </div>
-        <div class="entry-category">Misc · Components</div>
-      </a>
-      <a href="#" class="entry-card component">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-gem"></i></div>
-          <div class="entry-name">Diamondine Dust</div>
-        </div>
-        <div class="entry-category">Misc · Components</div>
-      </a>
-      <a href="#" class="entry-card contract">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-file-signature"></i></div>
-          <div class="entry-name">Eyes of the Kirab</div>
-        </div>
-        <div class="entry-category">Contracts · Regular</div>
-      </a>
-      <a href="#" class="entry-card quest">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-scroll"></i></div>
-          <div class="entry-name">The Footsteps of the Fremen</div>
-        </div>
-        <div class="entry-category">Journey · Main Quests</div>
-      </a>
-      <a href="#" class="entry-card resource">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-flask"></i></div>
-          <div class="entry-name">Spice Melange</div>
-        </div>
-        <div class="entry-category">Misc · Refined Resources</div>
-      </a>
-      <a href="#" class="entry-card quest">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-scroll"></i></div>
-          <div class="entry-name">The Bloodline</div>
-        </div>
-        <div class="entry-category">Journey · Main Quests</div>
-      </a>
-      <a href="#" class="entry-card resource">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-flask"></i></div>
-          <div class="entry-name">Stravidium Fiber</div>
-        </div>
-        <div class="entry-category">Misc · Refined Resources</div>
-      </a>
-      <a href="#" class="entry-card resource">
-        <div class="entry-top">
-          <div class="entry-icon"><i class="fas fa-coins"></i></div>
-          <div class="entry-name">Blood Marks</div>
-        </div>
-        <div class="entry-category">Misc · Currency</div>
-      </a>
-    </div>
+      <div style="background: var(--sand-panel); border: 1px solid var(--sand-border); border-radius: var(--radius); padding: 2rem; margin-bottom: 2rem; box-shadow: var(--shadow); border-top: 3px solid var(--corrino-gold);">
+        <h2 style="font-size: 1.3rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--corrino-light); margin-bottom: 0.75rem;">Support the Site</h2>
+        <p style="color: var(--sand-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Consider supporting the site with one of our membership options and enjoy an ad-free experience. Your support keeps the database updated and the servers running.</p>
 
-    <!-- ========== TOOLS ========== -->
-    <div class="section-head" id="tools">
-      <h2><i class="fas fa-tools"></i> Tools</h2>
-      <a href="#">All tools <i class="fas fa-arrow-right"></i></a>
-    </div>
-
-    <div class="tools-strip">
-      <a href="#" class="tool-card">
-        <div class="tool-icon"><i class="fas fa-calculator"></i></div>
-        <div>
-          <h3>Resource Calculator</h3>
-          <p>Plan crafting chains and material costs.</p>
-        </div>
-      </a>
-      <a href="#" class="tool-card">
-        <div class="tool-icon"><i class="fas fa-map"></i></div>
-        <div>
-          <h3>Deep Desert Map</h3>
-          <p>Locate spice fields and wreck sites.</p>
-        </div>
-      </a>
-      <a href="#" class="tool-card">
-        <div class="tool-icon"><i class="fas fa-server"></i></div>
-        <div>
-          <h3>Server Status</h3>
-          <p>Live status for all official servers.</p>
-        </div>
-      </a>
-      <a href="#" class="tool-card">
-        <div class="tool-icon"><i class="fas fa-mobile-alt"></i></div>
-        <div>
-          <h3>Companion App</h3>
-          <p>Take the database with you on the go.</p>
-        </div>
-      </a>
-    </div>
-
-    <!-- ========== MEMBERSHIP PATHWAY ========== -->
-    <section class="membership">
-      <div>
-        <h2><i class="fas fa-crown"></i> Support the Site</h2>
-        <p>Consider supporting the site with one of our membership options and enjoy an ad-free experience.</p>
-        <ul class="membership-benefits">
-          <li><i class="fas fa-check"></i> Ad-free browsing</li>
-          <li><i class="fas fa-check"></i> Early access to new tools</li>
+        <h3 style="font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--sand-text); margin-bottom: 1rem;">What you get</h3>
+        <ul class="membership-benefits" style="margin-bottom: 1.5rem;">
+          <li><i class="fas fa-check"></i> Ad-free browsing across the entire site</li>
+          <li><i class="fas fa-check"></i> Early access to new tools and features</li>
           <li><i class="fas fa-check"></i> Member badge on Discord</li>
           <li><i class="fas fa-check"></i> Priority data updates</li>
+          <li><i class="fas fa-check"></i> Vote on upcoming features</li>
+          <li><i class="fas fa-check"></i> Support independent tool development</li>
         </ul>
-      </div>
-      <div class="tier-cards">
-        <div class="tier">
-          <strong>Supporter · Monthly</strong>
-          <span>$3 / mo</span>
+
+        <h3 style="font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--sand-text); margin-bottom: 1rem;">Choose your tier</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+          <button class="tier" onclick="comingSoon('Membership checkout')" style="flex-direction: column; align-items: flex-start; padding: 1.25rem;">
+            <strong style="font-size: 1rem; margin-bottom: 0.3rem;">Supporter · Monthly</strong>
+            <span style="font-size: 1.5rem;">$3 <small style="font-size: 0.8rem; color: var(--sand-muted);">/ mo</small></span>
+            <span style="font-size: 0.75rem; color: var(--sand-muted); margin-top: 0.5rem; text-transform: none; letter-spacing: 0;">Cancel anytime. Billed monthly.</span>
+          </button>
+          <button class="tier" onclick="comingSoon('Membership checkout')" style="flex-direction: column; align-items: flex-start; padding: 1.25rem; border-color: var(--corrino-gold);">
+            <strong style="font-size: 1rem; margin-bottom: 0.3rem;">Supporter · Yearly <span style="font-size: 0.6rem; background: var(--corrino-gold); color: #1a1300; padding: 0.1rem 0.4rem; border-radius: 2px; margin-left: 0.3rem;">Best value</span></strong>
+            <span style="font-size: 1.5rem;">$25 <small style="font-size: 0.8rem; color: var(--sand-muted);">/ yr</small></span>
+            <span style="font-size: 0.75rem; color: var(--sand-muted); margin-top: 0.5rem; text-transform: none; letter-spacing: 0;">Save $11. Billed annually.</span>
+          </button>
         </div>
-        <div class="tier">
-          <strong>Supporter · Yearly</strong>
-          <span>$25 / yr</span>
-        </div>
-        <a href="#" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Learn more</a>
       </div>
+
+      <section class="membership" style="grid-template-columns: 1fr;">
+        <div>
+          <h2><i class="fas fa-question-circle"></i> Frequently Asked</h2>
+          <p><strong style="color: var(--sand-text);">Is this affiliated with Funcom?</strong><br>No. dune.gaming.tools is an independent community project, not affiliated with Funcom.</p>
+          <p><strong style="color: var(--sand-text);">Can I cancel anytime?</strong><br>Yes. Memberships are month-to-month or year-to-year and can be cancelled from your account settings.</p>
+          <p><strong style="color: var(--sand-text);">Do memberships unlock data?</strong><br>No. All database data remains free. Memberships only remove ads and add supporter perks.</p>
+        </div>
+      </section>
     </section>
 
-    <!-- ========== COMMUNITY CTA ========== -->
-    <div class="community-cta">
-      <a href="#" class="community-card discord">
-        <div class="community-icon"><i class="fab fa-discord"></i></div>
-        <div>
-          <h3>Join the Discord</h3>
-          <p>Trade, theorycraft, and find a tribe.</p>
-        </div>
-      </a>
-      <a href="#" class="community-card companion">
-        <div class="community-icon"><i class="fas fa-mobile-alt"></i></div>
-        <div>
-          <h3>Dune Companion App</h3>
-          <p>Available for iOS and Android.</p>
-        </div>
-      </a>
-    </div>
+    <!-- ================================================================
+         FOOTER
+         ================================================================ -->
+    <footer class="site-footer">
+      <div>
+        <button onclick="navigate('home')">Home</button>
+        <button onclick="navigate('database')">Database</button>
+        <button onclick="navigate('tools')">Tools</button>
+        <button onclick="navigate('membership')">Membership</button>
+        <button onclick="comingSoon('Server Status')">Server Status</button>
+        <button onclick="comingSoon('Feedback form')">Feedback</button>
+      </div>
+      <div>© 2025 dune.gaming.tools · Not affiliated with Funcom</div>
+    </footer>
 
   </main>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="site-footer">
-    <div>
-      <a href="#">Home</a>
-      <a href="#database">Database</a>
-      <a href="#tools">Tools</a>
-      <a href="#">Server Status</a>
-      <a href="#">Feedback</a>
-    </div>
-    <div>© 2025 dune.gaming.tools · Not affiliated with Funcom</div>
-  </footer>
 
   <!-- ========== BACK TO TOP ========== -->
   <button class="back-to-top" id="backToTop" title="Back to top">
     <i class="fas fa-arrow-up"></i>
   </button>
 
+  <!-- ========== TOAST CONTAINER ========== -->
+  <div class="toast-container" id="toastContainer"></div>
+
   <script>
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 400) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
+    /* ============================================================
+       DATA
+       ============================================================ */
+
+    const ENTRIES = [
+      {
+        id: 'from-the-ashes',
+        name: 'From The Ashes',
+        category: 'quest',
+        categoryLabel: 'Journey · Main Quests',
+        icon: 'fa-scroll',
+        tags: ['Main Quest', 'Journey', 'Chapter 1'],
+        description: 'The opening chapter of your journey on Arrakis. After the crash, you must survive the deep desert and find your way to the sietch. This quest introduces the core survival mechanics: water discipline, spice harvesting, and Fremen customs.',
+        rewards: '2,500 Solari · Water Discipline skill · Basic crafting recipes',
+        location: 'Hagga Basin · Crash site',
+        prerequisites: 'None',
+        relatedEntries: ['the-janusian-faithful', 'the-footsteps-of-the-fremen'],
+        recipe: null
+      },
+      {
+        id: 'plasteel-plate',
+        name: 'Plasteel Plate',
+        category: 'component',
+        categoryLabel: 'Misc · Components',
+        icon: 'fa-cog',
+        tags: ['Component', 'Tier 2', 'Craftable'],
+        description: 'A reinforced alloy plate used in mid-game construction and vehicle fabrication. Essential for upgrading your base and crafting advanced machinery.',
+        rewards: null,
+        location: 'Craftable at Fabricator (Tier 2)',
+        prerequisites: 'Fabricator Tier 2 blueprint',
+        relatedEntries: ['advanced-machinery', 'complex-machinery'],
+        recipe: [
+          { item: 'Steel Ingot', qty: 2 },
+          { item: 'Carbon Fiber', qty: 1 },
+          { item: 'Resin', qty: 1 }
+        ]
+      },
+      {
+        id: 'mutated-brain-tissue',
+        name: 'Mutated Brain Tissue',
+        category: 'resource',
+        categoryLabel: 'Misc · Raw Resources',
+        icon: 'fa-flask',
+        tags: ['Raw Resource', 'Rare', 'Harvested'],
+        description: 'A rare biological resource harvested from mutated creatures in the deep desert. Used in advanced medical crafting and certain quest turn-ins.',
+        rewards: null,
+        location: 'Deep Desert · Mutated creatures',
+        prerequisites: 'Bio-harvester tool',
+        relatedEntries: ['spice-melange'],
+        recipe: null
+      },
+      {
+        id: 'the-janusian-faithful',
+        name: 'The Janusian Faithful',
+        category: 'quest',
+        categoryLabel: 'Journey · Main Quests',
+        icon: 'fa-scroll',
+        tags: ['Main Quest', 'Journey', 'Chapter 2'],
+        description: 'A splinter faction of the Janusian cult has taken root in the Hagga Basin. Investigate their rituals, decide whether to aid or oppose them, and uncover their connection to the spice trade.',
+        rewards: '4,000 Solari · Janusian Sigil · Faction reputation',
+        location: 'Hagga Basin · Janusian outpost',
+        prerequisites: 'From The Ashes',
+        relatedEntries: ['from-the-ashes', 'the-kirab-cortex'],
+        recipe: null
+      },
+      {
+        id: 'thermoelectric-cooler',
+        name: 'Thermoelectric Cooler',
+        category: 'component',
+        categoryLabel: 'Misc · Components',
+        icon: 'fa-cog',
+        tags: ['Component', 'Tier 3', 'Craftable'],
+        description: 'A vital cooling component for high-tier machinery and vehicle engines. Prevents overheating in Arrakis\'s extreme temperatures.',
+        rewards: null,
+        location: 'Craftable at Fabricator (Tier 3)',
+        prerequisites: 'Fabricator Tier 3 blueprint',
+        relatedEntries: ['plasteel-plate', 'industrial-pump'],
+        recipe: [
+          { item: 'Plasteel Plate', qty: 2 },
+          { item: 'Copper Wire', qty: 4 },
+          { item: 'Coolant Cell', qty: 1 }
+        ]
+      },
+      {
+        id: 'industrial-pump',
+        name: 'Industrial Pump',
+        category: 'component',
+        categoryLabel: 'Misc · Components',
+        icon: 'fa-cog',
+        tags: ['Component', 'Tier 2', 'Craftable'],
+        description: 'A heavy-duty pump used in water extraction and spice refining facilities. Required for large-scale base infrastructure.',
+        rewards: null,
+        location: 'Craftable at Fabricator (Tier 2)',
+        prerequisites: 'Fabricator Tier 2 blueprint',
+        relatedEntries: ['thermoelectric-cooler', 'advanced-machinery'],
+        recipe: [
+          { item: 'Steel Ingot', qty: 4 },
+          { item: 'Rubber', qty: 2 },
+          { item: 'Plasteel Plate', qty: 1 }
+        ]
+      },
+      {
+        id: 'the-kirab-cortex',
+        name: 'The Kirab Cortex',
+        category: 'contract',
+        categoryLabel: 'Contracts · Regular',
+        icon: 'fa-file-signature',
+        tags: ['Contract', 'Regular', 'Combat'],
+        description: 'A dangerous contract to retrieve a Kirab Cortex from a heavily guarded Harkonnen outpost. High risk, high reward.',
+        rewards: '8,500 Solari · Harkonnen weapon cache',
+        location: 'Harkonnen outpost · Deep Desert',
+        prerequisites: 'Combat rank 3',
+        relatedEntries: ['patient-zero', 'eyes-of-the-kirab'],
+        recipe: null
+      },
+      {
+        id: 'patient-zero',
+        name: 'Patient Zero',
+        category: 'contract',
+        categoryLabel: 'Contracts · Regular',
+        icon: 'fa-file-signature',
+        tags: ['Contract', 'Regular', 'Investigation'],
+        description: 'A mysterious illness has broken out in a remote settlement. Track the source, gather samples, and decide whether to report it to the authorities or the Fremen.',
+        rewards: '5,200 Solari · Medical supplies',
+        location: 'Remote settlement · Hagga Basin',
+        prerequisites: 'None',
+        relatedEntries: ['the-kirab-cortex'],
+        recipe: null
+      },
+      {
+        id: 'carrier-ornithopter-cargo-container',
+        name: 'Carrier Ornithopter Cargo Container',
+        category: 'vehicle',
+        categoryLabel: 'Vehicles · Carry-all',
+        icon: 'fa-plane',
+        tags: ['Vehicle', 'Carry-all', 'Ornithopter'],
+        description: 'An attachable cargo container for the Carrier Ornithopter. Expands carrying capacity for long-range trade runs and resource hauling.',
+        rewards: null,
+        location: 'Craftable at Vehicle Bay',
+        prerequisites: 'Carrier Ornithopter blueprint',
+        relatedEntries: [],
+        recipe: [
+          { item: 'Plasteel Plate', qty: 6 },
+          { item: 'Carbon Fiber', qty: 4 },
+          { item: 'Advanced Machinery', qty: 2 }
+        ]
+      },
+      {
+        id: 'advanced-machinery',
+        name: 'Advanced Machinery',
+        category: 'component',
+        categoryLabel: 'Misc · Components',
+        icon: 'fa-cog',
+        tags: ['Component', 'Tier 3', 'Craftable'],
+        description: 'A complex assembly of gears, servos, and precision parts. Required for late-game vehicles and base upgrades.',
+        rewards: null,
+        location: 'Craftable at Fabricator (Tier 3)',
+        prerequisites: 'Fabricator Tier 3 blueprint',
+        relatedEntries: ['complex-machinery', 'plasteel-plate'],
+        recipe: [
+          { item: 'Plasteel Plate', qty: 3 },
+          { item: 'Copper Wire', qty: 6 },
+          { item: 'Precision Gear', qty: 2 }
+        ]
+      },
+      {
+        id: 'complex-machinery',
+        name: 'Complex Machinery',
+        category: 'component',
+        categoryLabel: 'Misc · Components',
+        icon: 'fa-cog',
+        tags: ['Component', 'Tier 3', 'Craftable'],
+        description: 'A more advanced version of Advanced Machinery, used in the most demanding construction projects. Requires rare components.',
+        rewards: null,
+        location: 'Craftable at Fabricator (Tier 3)',
+        prerequisites: 'Advanced Machinery blueprint',
+        relatedEntries: ['advanced-machinery', 'industrial-pump'],
+        recipe: [
+          { item: 'Advanced Machinery', qty: 2 },
+          { item: 'Diamondine Dust', qty: 1 },
+          { item: 'Circuit Board', qty: 3 }
+        ]
+      },
+      {
+        id: 'diamondine-dust',
+        name: 'Diamondine Dust',
+        category: 'component',
+        categoryLabel: 'Misc · Components',
+        icon: 'fa-gem',
+        tags: ['Component', 'Rare', 'Refined'],
+        description: 'A refined powder made from diamondine crystals. Used in high-tier component crafting and certain advanced recipes.',
+        rewards: null,
+        location: 'Refinable at Refinery',
+        prerequisites: 'Diamondine Crystal × 2',
+        relatedEntries: ['complex-machinery'],
+        recipe: [
+          { item: 'Diamondine Crystal', qty: 2 }
+        ]
+      },
+      {
+        id: 'eyes-of-the-kirab',
+        name: 'Eyes of the Kirab',
+        category: 'contract',
+        categoryLabel: 'Contracts · Regular',
+        icon: 'fa-file-signature',
+        tags: ['Contract', 'Regular', 'Stealth'],
+        description: 'A stealth-focused contract to retrieve the Eyes of the Kirab — two rare gemstones — from a heavily fortified compound. Avoid detection at all costs.',
+        rewards: '12,000 Solari · Rare gemstone',
+        location: 'Fortified compound · Deep Desert',
+        prerequisites: 'Stealth rank 2',
+        relatedEntries: ['the-kirab-cortex'],
+        recipe: null
+      },
+      {
+        id: 'the-footsteps-of-the-fremen',
+        name: 'The Footsteps of the Fremen',
+        category: 'quest',
+        categoryLabel: 'Journey · Main Quests',
+        icon: 'fa-scroll',
+        tags: ['Main Quest', 'Journey', 'Fremen'],
+        description: 'Walk the path of the Fremen. Learn their ways, earn their trust, and discover the secrets of the deep desert. This quest unlocks the Fremen faction and their unique crafting recipes.',
+        rewards: '6,000 Solari · Fremen faction unlock · Crysknife blueprint',
+        location: 'Sietch Tabr · Deep Desert',
+        prerequisites: 'The Janusian Faithful',
+        relatedEntries: ['from-the-ashes', 'spice-melange'],
+        recipe: null
+      },
+      {
+        id: 'spice-melange',
+        name: 'Spice Melange',
+        category: 'resource',
+        categoryLabel: 'Misc · Refined Resources',
+        icon: 'fa-flask',
+        tags: ['Refined Resource', 'Spice', 'Trade Good'],
+        description: 'The most valuable substance in the universe. Refined from raw spice, it extends life, enhances awareness, and powers interstellar travel. Handle with care.',
+        rewards: null,
+        location: 'Refinable at Refinery',
+        prerequisites: 'Raw Spice × 10',
+        relatedEntries: ['stravidium-fiber', 'mutated-brain-tissue'],
+        recipe: [
+          { item: 'Raw Spice', qty: 10 }
+        ]
+      },
+      {
+        id: 'the-bloodline',
+        name: 'The Bloodline',
+        category: 'quest',
+        categoryLabel: 'Journey · Main Quests',
+        icon: 'fa-scroll',
+        tags: ['Main Quest', 'Journey', 'Chapter 3'],
+        description: 'A direct descendant of the Atreides line has been spotted on Arrakis. Protect them, or exploit them — the choice is yours. This quest has multiple branching endings.',
+        rewards: '10,000 Solari · Atreides Sigil · Branching ending',
+        location: 'Hidden refuge · Hagga Basin',
+        prerequisites: 'The Footsteps of the Fremen',
+        relatedEntries: ['the-footsteps-of-the-fremen'],
+        recipe: null
+      },
+      {
+        id: 'stravidium-fiber',
+        name: 'Stravidium Fiber',
+        category: 'resource',
+        categoryLabel: 'Misc · Refined Resources',
+        icon: 'fa-flask',
+        tags: ['Refined Resource', 'Rare', 'Craftable'],
+        description: 'A strong, flexible fiber refined from Stravidium plants. Used in advanced armor and vehicle crafting.',
+        rewards: null,
+        location: 'Refinable at Refinery',
+        prerequisites: 'Stravidium Plant × 4',
+        relatedEntries: ['spice-melange'],
+        recipe: [
+          { item: 'Stravidium Plant', qty: 4 }
+        ]
+      },
+      {
+        id: 'blood-marks',
+        name: 'Blood Marks',
+        category: 'resource',
+        categoryLabel: 'Misc · Currency',
+        icon: 'fa-coins',
+        tags: ['Currency', 'Harkonnen', 'Trade'],
+        description: 'Currency used by the Harkonnen faction. Earned through contracts and combat, spent on Harkonnen-exclusive gear and services.',
+        rewards: null,
+        location: 'Harkonnen-controlled areas',
+        prerequisites: 'Harkonnen faction standing',
+        relatedEntries: ['the-kirab-cortex', 'eyes-of-the-kirab'],
+        recipe: null
       }
-    });
-    backToTop.addEventListener('click', function () {
+    ];
+
+    const TOOLS = [
+      { icon: 'fa-calculator', title: 'Resource Calculator', desc: 'Plan crafting chains and material costs.', available: true, target: 'calc' },
+      { icon: 'fa-map', title: 'Deep Desert Map', desc: 'Locate spice fields and wreck sites.', available: false },
+      { icon: 'fa-map-marked-alt', title: 'Hagga Basin Map', desc: 'Navigate the Hagga Basin region.', available: false },
+      { icon: 'fa-server', title: 'Server Status', desc: 'Live status for all official servers.', available: false },
+      { icon: 'fa-mobile-alt', title: 'Companion App', desc: 'Take the database with you on the go.', available: false }
+    ];
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+
+    let currentPage = 'home';
+    let databaseFilter = 'all';
+    let homeFilter = 'all';
+
+    function navigate(page, entryId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+
+      const target = document.getElementById('page-' + page);
+      if (target) target.classList.add('active');
+
+      document.querySelectorAll('.main-nav button[data-nav]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.nav === page);
+      });
+
+      currentPage = page;
+
+      if (page === 'database') renderDatabase();
+      if (page === 'detail' && entryId) renderDetail(entryId);
+      if (page === 'tools') renderToolsPage();
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ============================================================
+       RENDERING: ENTRY CARDS
+       ============================================================ */
+
+    function renderEntryCard(entry) {
+      return `
+        <button class="entry-card ${entry.category}" onclick="navigate('detail', '${entry.id}')">
+          <div class="entry-top">
+            <div class="entry-icon"><i class="fas ${entry.icon}"></i></div>
+            <div class="entry-name">${entry.name}</div>
+          </div>
+          <div class="entry-category">${entry.categoryLabel}</div>
+        </button>
+      `;
+    }
+
+    function renderHomeEntries() {
+      const grid = document.getElementById('homeEntryGrid');
+      const popular = ENTRIES.slice(0, 12);
+      grid.innerHTML = popular.map(renderEntryCard).join('');
+    }
+
+    function renderDatabase() {
+      const grid = document.getElementById('databaseEntryGrid');
+      const empty = document.getElementById('databaseEmpty');
+      const count = document.getElementById('databaseCount');
+      const searchInput = document.getElementById('databaseSearchInput');
+      const searchTerm = (searchInput ? searchInput.value : '').toLowerCase().trim();
+
+      let filtered = ENTRIES.filter(e => {
+        const matchesFilter = databaseFilter === 'all' || e.category === databaseFilter;
+        const matchesSearch = !searchTerm || e.name.toLowerCase().includes(searchTerm) || e.categoryLabel.toLowerCase().includes(searchTerm);
+        return matchesFilter && matchesSearch;
+      });
+
+      count.textContent = `Showing ${filtered.length} of ${ENTRIES.length} entries`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        empty.style.display = 'block';
+      } else {
+        empty.style.display = 'none';
+        grid.innerHTML = filtered.map(renderEntryCard).join('');
+      }
+    }
+
+    document.querySelectorAll('#databaseFilters .filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#databaseFilters .filter-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        databaseFilter = chip.dataset.filter;
+        renderDatabase();
+      });
     });
 
-    document.querySelectorAll('.filter-chip').forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        document.querySelectorAll('.filter-chip').forEach(function (c) {
-          c.classList.remove('active');
-        });
+    document.querySelectorAll('.database-search .filter-chip').forEach(chip => {
+      if (chip.closest('#databaseFilters')) return;
+      chip.addEventListener('click', () => {
+        const parent = chip.closest('.filter-row');
+        parent.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
         chip.classList.add('active');
       });
     });
+
+    /* ============================================================
+       RENDERING: ENTRY DETAIL
+       ============================================================ */
+
+    function renderDetail(entryId) {
+      const entry = ENTRIES.find(e => e.id === entryId);
+      const container = document.getElementById('detailContent');
+
+      if (!entry) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-database"></i>
+            <h3>Entry not found</h3>
+            <p>This entry may not exist in our database yet.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const tagColor = {
+        quest: '--fremen-light',
+        component: '--atreides-light',
+        resource: '--corrino-light',
+        contract: '--harkonnen-light',
+        vehicle: '--spice-glow'
+      }[entry.category] || '--sand-text';
+
+      const borderColor = {
+        quest: '--fremen-blue',
+        component: '--atreides-green',
+        resource: '--corrino-gold',
+        contract: '--harkonnen-red',
+        vehicle: '--spice'
+      }[entry.category] || '--spice';
+
+      const related = entry.relatedEntries || [];
+
+      container.innerHTML = `
+        <div class="detail-layout">
+          <div class="detail-main" style="border-left-color: var(${borderColor});">
+            <h1>${entry.name}</h1>
+            <div class="detail-tags">
+              ${entry.tags.map(t => `<span style="color: var(${tagColor}); border-color: var(${tagColor}); background: rgba(255,255,255,0.03);">${t}</span>`).join('')}
+            </div>
+            <p>${entry.description}</p>
+
+            <h3 style="color: var(${tagColor}); margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px;">Details</h3>
+            <table class="stat-table">
+              <tbody>
+                <tr><td>Category</td><td>${entry.categoryLabel}</td></tr>
+                ${entry.location ? `<tr><td>Location</td><td>${entry.location}</td></tr>` : ''}
+                ${entry.prerequisites ? `<tr><td>Prerequisites</td><td>${entry.prerequisites}</td></tr>` : ''}
+                ${entry.rewards ? `<tr><td>Rewards</td><td>${entry.rewards}</td></tr>` : ''}
+              </tbody>
+            </table>
+
+            ${entry.recipe ? `
+              <h3 style="color: var(${tagColor}); margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px;">Recipe</h3>
+              <table class="stat-table">
+                <thead><tr><th>Material</th><th>Quantity</th></tr></thead>
+                <tbody>
+                  ${entry.recipe.map(r => `<tr><td>${r.item}</td><td>${r.qty}</td></tr>`).join('')}
+                </tbody>
+              </table>
+            ` : ''}
+
+            ${related.length > 0 ? `
+              <h3 style="color: var(${tagColor}); margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px;">Related Entries</h3>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                ${related.map(id => {
+                  const r = ENTRIES.find(e => e.id === id);
+                  if (!r) return '';
+                  return `<button class="filter-chip" onclick="navigate('detail', '${r.id}')">${r.name}</button>`;
+                }).join('')}
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="detail-side">
+            <h3><i class="fas fa-calculator"></i> Quick Calculator</h3>
+            <p style="color: var(--sand-muted); font-size: 0.8rem; margin-bottom: 0.5rem;">Estimate materials needed for a quantity.</p>
+            <form class="calc-form-detail" onsubmit="event.preventDefault(); runDetailCalculator('${entry.id}');">
+              <input type="number" id="detailQty" placeholder="Quantity" min="1" value="1" required>
+              <button type="submit" class="btn btn-primary"><i class="fas fa-calculator"></i> Calculate</button>
+            </form>
+            <div class="calc-result" id="detailCalcResult">
+              <h4><i class="fas fa-check-circle"></i> Material Estimate</h4>
+              <div id="detailCalcRows"></div>
+            </div>
+
+            <h3 style="margin-top: 1.5rem;"><i class="fas fa-link"></i> Quick Links</h3>
+            <div class="side-row"><span>Category</span><span>${entry.categoryLabel}</span></div>
+            ${entry.location ? `<div class="side-row"><span>Location</span><span>${entry.location}</span></div>` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    /* ============================================================
+       CALCULATOR: DETAIL QUICK
+       ============================================================ */
+
+    function runDetailCalculator(entryId) {
+      const entry = ENTRIES.find(e => e.id === entryId);
+      const qty = parseInt(document.getElementById('detailQty').value) || 1;
+      const result = document.getElementById('detailCalcResult');
+      const rows = document.getElementById('detailCalcRows');
+
+      if (!entry) {
+        showToast('Entry not found.');
+        return;
+      }
+
+      if (!entry.recipe) {
+        showToast(`No recipe data available for "${entry.name}" yet. Coming soon!`);
+        return;
+      }
+
+      rows.innerHTML = entry.recipe.map(r => `
+        <div class="calc-result-row">
+          <span>${r.item}</span>
+          <span>${r.qty * qty}</span>
+        </div>
+      `).join('') + `
+        <div class="calc-result-row" style="border-top: 1px solid var(--sand-border); margin-top: 0.5rem; padding-top: 0.6rem;">
+          <span>Total Items</span>
+          <span>${entry.recipe.reduce((sum, r) => sum + r.qty * qty, 0)}</span>
+        </div>
+      `;
+
+      result.classList.add('visible');
+    }
+
+    /* ============================================================
+       CALCULATOR: RESOURCE (Tools page)
+       ============================================================ */
+
+    function runResourceCalculator() {
+      const input = document.getElementById('recipeInput').value.trim().toLowerCase();
+      const qty = parseInt(document.getElementById('recipeQty').value) || 1;
+      const result = document.getElementById('recipeResult');
+      const rows = document.getElementById('recipeResultRows');
+
+      const entry = ENTRIES.find(e => e.name.toLowerCase().includes(input) && e.recipe);
+
+      if (!entry) {
+        showToast(`No recipe found for "${input}". Try Plasteel Plate, Spice Melange, or another craftable.`);
+        result.classList.remove('visible');
+        return;
+      }
+
+      rows.innerHTML = `
+        <div class="calc-result-row" style="margin-bottom: 0.5rem; border-bottom: 1px solid var(--sand-border); padding-bottom: 0.6rem;">
+          <span style="color: var(--corrino-light); font-weight: 700;">${entry.name} × ${qty}</span>
+          <span></span>
+        </div>
+        ${entry.recipe.map(r => `
+          <div class="calc-result-row">
+            <span>${r.item}</span>
+            <span>${r.qty * qty}</span>
+          </div>
+        `).join('')}
+        <div class="calc-result-row" style="border-top: 1px solid var(--sand-border); margin-top: 0.5rem; padding-top: 0.6rem;">
+          <span>Total Materials</span>
+          <span>${entry.recipe.reduce((sum, r) => sum + r.qty * qty, 0)}</span>
+        </div>
+      `;
+
+      result.classList.add('visible');
+    }
+
+    /* ============================================================
+       HOME SEARCH
+       ============================================================ */
+
+    function homeSearch() {
+      const term = document.getElementById('homeSearchInput').value.trim().toLowerCase();
+      const searchInput = document.getElementById('databaseSearchInput');
+
+      if (searchInput) searchInput.value = term;
+      navigate('database');
+      setTimeout(() => {
+        renderDatabase();
+        if (document.querySelectorAll('#databaseEntryGrid .entry-card').length === 0) {
+          showToast(`No entries match "${term}". Try a different search.`);
+        }
+      }, 100);
+    }
+
+    /* ============================================================
+       TOOLS PAGE
+       ============================================================ */
+
+    function renderToolsPage() {
+      const grid = document.getElementById('toolsGrid');
+      grid.innerHTML = TOOLS.map(t => `
+        <button class="tool-card" onclick="${t.available && t.target === 'calc' ? `document.getElementById('recipeInput').focus()` : `comingSoon('${t.title}')`}">
+          <div class="tool-icon"><i class="fas ${t.icon}"></i></div>
+          <div>
+            <h3>${t.title} ${t.available ? '' : '<span class="soon-tag">Soon</span>'}</h3>
+            <p>${t.desc}</p>
+          </div>
+        </button>
+      `).join('');
+    }
+
+    function renderHomeTools() {
+      const grid = document.getElementById('homeToolsGrid');
+      grid.innerHTML = TOOLS.slice(0, 4).map(t => `
+        <button class="tool-card" onclick="${t.available && t.target === 'calc' ? `navigate('tools'); setTimeout(() => document.getElementById('recipeInput').focus(), 200);` : `comingSoon('${t.title}')`}">
+          <div class="tool-icon"><i class="fas ${t.icon}"></i></div>
+          <div>
+            <h3>${t.title} ${t.available ? '' : '<span class="soon-tag">Soon</span>'}</h3>
+            <p>${t.desc}</p>
+          </div>
+        </button>
+      `).join('');
+    }
+
+    /* ============================================================
+       COMING SOON / TOAST
+       ============================================================ */
+
+    function showToast(message) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `<i class="fas fa-clock"></i> ${message}`;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(12px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 3400);
+    }
+
+    function comingSoon(feature) {
+      showToast(`${feature} is coming soon — blessed be the Maker.`);
+    }
+
+    /* ============================================================
+       BACK TO TOP
+       ============================================================ */
+
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 400);
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ============================================================
+       INIT
+       ============================================================ */
+
+    renderHomeEntries();
+    renderHomeTools();
+    navigate('home');
   </script>
 </body>
 </html>
